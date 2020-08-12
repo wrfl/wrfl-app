@@ -96,7 +96,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button title={isPlaying ? 'Pause' : 'Play'} onPress={onPressTogglePlay} />
-      <Text>{lastPlayed?.artist} NICK2</Text>
+      <Text>{lastPlayed?.artist}</Text>
       <Text>{lastPlayed?.track}</Text>
       <Text>{lastPlayed?.album}</Text>
 

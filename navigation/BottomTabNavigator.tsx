@@ -7,7 +7,13 @@ import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 import TabOneScreen from '../screens/TabOneScreen'
 import TabTwoScreen from '../screens/TabTwoScreen'
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types'
+import ScheduleScreen from '../screens/ScheduleScreen'
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabTwoParamList,
+  ScheduleParamList,
+} from '../types'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
@@ -16,21 +22,28 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName={'TabOne'}
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="TabOne"
+        name={'Listen'}
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name={'ios-home'} color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name={'Playlist'}
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name={'ios-list'} color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name={'Schedule'}
+        component={ScheduleNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name={'ios-calendar'} color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -51,7 +64,7 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
+        name={'TabOneScreen'}
         component={TabOneScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
@@ -60,15 +73,27 @@ function TabOneNavigator() {
 }
 
 const TabTwoStack = createStackNavigator<TabTwoParamList>()
-
 function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
+        name={'TabTwoScreen'}
         component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  )
+}
+
+const ScheduleStack = createStackNavigator<ScheduleParamList>()
+function ScheduleNavigator() {
+  return (
+    <ScheduleStack.Navigator>
+      <ScheduleStack.Screen
+        name={'ScheduleScreen'}
+        component={ScheduleScreen}
+        options={{ headerTitle: 'Tab Two Title' }}
+      />
+    </ScheduleStack.Navigator>
   )
 }

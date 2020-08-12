@@ -33,7 +33,7 @@ interface ShowProps {
 
 const PLAYS_URL = 'http://wrfl.fm/plays.json'
 
-export default function TabTwoScreen() {
+export default function ScheduleScreen() {
   const [page, setPage] = useState(1)
   const [plays, setPlays] = useState([])
 

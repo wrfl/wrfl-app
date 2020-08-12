@@ -16,6 +16,11 @@ export default {
               TabTwoScreen: 'two',
             },
           },
+          Schedule: {
+            screens: {
+              ScheduleScreen: 'schedule',
+            },
+          },
         },
       },
       NotFound: '*',
