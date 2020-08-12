@@ -2,16 +2,13 @@
   "expo": {
     "name": "wrfl",
     "slug": "wrfl",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
+    "version": "881.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,13 +18,22 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "fm.wrfl.wrfl",
+      "versionCode": 1
+    },
     "ios": {
+      "bundleIdentifier": "fm.wrfl.wrfl",
+      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": [
           "audio"
         ]
       }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }
