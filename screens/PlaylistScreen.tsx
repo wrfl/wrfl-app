@@ -33,18 +33,28 @@ interface ShowProps {
 
 const PLAYS_URL = 'http://wrfl.fm/plays.json'
 
-export default function TabTwoScreen() {
+export default function PlaylistScreen() {
   const [page, setPage] = useState(1)
   const [plays, setPlays] = useState([])
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
     fetchData()
-  }, [page])
+  }, [])
+
+  useEffect(() => {
+    setIsRefreshing(false)
+  }, [plays])
 
   async function fetchData() {
     const response = await fetch(`${PLAYS_URL}?page=${page}`)
     const newPlays = await response.json()
     setPlays(newPlays)
+  }
+
+  function onRefesh() {
+    setIsRefreshing(true)
+    fetchData()
   }
 
   function renderItem({ item }: { item: PlayProps }) {
@@ -61,7 +71,12 @@ export default function TabTwoScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList data={plays} renderItem={renderItem} />
+      <FlatList
+        refreshing={isRefreshing}
+        onRefresh={onRefesh}
+        data={plays}
+        renderItem={renderItem}
+      />
     </View>
   )
 }

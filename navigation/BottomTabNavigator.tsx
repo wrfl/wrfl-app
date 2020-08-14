@@ -5,13 +5,13 @@ import * as React from 'react'
 
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
-import TabOneScreen from '../screens/TabOneScreen'
-import TabTwoScreen from '../screens/TabTwoScreen'
+import ListenScreen from '../screens/ListenScreen'
+import PlaylistScreen from '../screens/PlaylistScreen'
 import ScheduleScreen from '../screens/ScheduleScreen'
 import {
   BottomTabParamList,
-  TabOneParamList,
-  TabTwoParamList,
+  ListenParamList,
+  PlaylistParamList,
   ScheduleParamList,
 } from '../types'
 
@@ -22,19 +22,19 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName={'TabOne'}
+      initialRouteName={'Listen'}
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
         name={'Listen'}
-        component={TabOneNavigator}
+        component={ListenNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name={'ios-home'} color={color} />,
         }}
       />
       <BottomTab.Screen
         name={'Playlist'}
-        component={TabTwoNavigator}
+        component={PlaylistNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name={'ios-list'} color={color} />,
         }}
@@ -58,30 +58,30 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>()
+const ListenStack = createStackNavigator<ListenParamList>()
 
-function TabOneNavigator() {
+function ListenNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name={'TabOneScreen'}
-        component={TabOneScreen}
+    <ListenStack.Navigator>
+      <ListenStack.Screen
+        name={'ListenScreen'}
+        component={ListenScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
-    </TabOneStack.Navigator>
+    </ListenStack.Navigator>
   )
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>()
-function TabTwoNavigator() {
+const PlaylistStack = createStackNavigator<PlaylistParamList>()
+function PlaylistNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name={'TabTwoScreen'}
-        component={TabTwoScreen}
+    <PlaylistStack.Navigator>
+      <PlaylistStack.Screen
+        name={'PlaylistScreen'}
+        component={PlaylistScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
-    </TabTwoStack.Navigator>
+    </PlaylistStack.Navigator>
   )
 }
 

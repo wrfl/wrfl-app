@@ -9,12 +9,12 @@ export type BottomTabParamList = {
   Schedule: undefined
 }
 
-export type TabOneParamList = {
-  TabOneScreen: undefined
+export type ListenParamList = {
+  ListenScreen: undefined
 }
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined
+export type PlaylistParamList = {
+  PlaylistScreen: undefined
 }
 
 export type ScheduleParamList = {

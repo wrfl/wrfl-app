@@ -16,7 +16,7 @@ interface ShowProps {
 }
 
 const LAST_PLAYED_URL = 'http://wrfl.fm/plays/last.json'
-const REFRESH_LAST_PLAYED_INTERVAL = 10000
+const REFRESH_LAST_PLAYED_INTERVAL = 20000
 const STREAM_URL = 'http://wrfl.fm:9000/stream/1'
 
 Audio.setAudioModeAsync({
@@ -26,7 +26,7 @@ Audio.setAudioModeAsync({
 
 const stream = new Audio.Sound()
 
-export default function App() {
+export default function ListenScreen() {
   const [currentAlbumCoverArt, setCurrentAlbumCoverArt] = useState()
   const [lastPlayed, setLastPlayed] = useState<PlaylistItemProps>({})
   const [isLoaded, setIsLoaded] = useState(false)
@@ -34,17 +34,15 @@ export default function App() {
 
   useEffect(() => {
     updateLastPlayedData()
-    const lastPlayedInterval = setInterval(
-      () => updateLastPlayedData(),
-      REFRESH_LAST_PLAYED_INTERVAL,
-    )
-    return () => {
-      clearInterval(lastPlayedInterval)
-    }
   }, [])
 
   useEffect(() => {
-    updateAlbumCoverArt()
+    const lastPlayedInterval = setTimeout(() => {
+      updateLastPlayedData()
+    }, REFRESH_LAST_PLAYED_INTERVAL)
+    return () => {
+      clearTimeout(lastPlayedInterval)
+    }
   }, [lastPlayed])
 
   function onPressOpenUrl(url: string) {
@@ -54,7 +52,6 @@ export default function App() {
   async function onPressTogglePlay() {
     if (isPlaying) {
       try {
-        console.log('trying to pause...')
         await stream.pauseAsync()
         setIsPlaying(false)
       } catch (error) {
@@ -77,9 +74,9 @@ export default function App() {
   async function updateLastPlayedData() {
     const response = await fetch(LAST_PLAYED_URL)
     let newPlay = await response.json()
-    console.log(lastPlayed, setLastPlayed, newPlay)
+    setLastPlayed(newPlay)
     if (lastPlayed.track !== newPlay.track) {
-      setLastPlayed(newPlay)
+      updateAlbumCoverArt()
     }
   }
 
@@ -88,11 +85,9 @@ export default function App() {
       artist: lastPlayed.artist,
       release: lastPlayed.album,
     })
-    console.log('updateAlbumCoverArt', url)
     setCurrentAlbumCoverArt(url)
   }
 
-  console.log(2)
   return (
     <View style={styles.container}>
       <Button title={isPlaying ? 'Pause' : 'Play'} onPress={onPressTogglePlay} />
