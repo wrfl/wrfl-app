@@ -3,17 +3,21 @@ const tintColorDark = '#fff'
 
 export default {
   light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
+    screenBackgroundColor: '#9DD5F4',
+    scrollViewBackgroundColor: '#FCF9EB',
+    tabBackgroundColor: '#FCD9E6',
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
+    text: '#000',
+    tint: tintColorLight,
   },
   dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
+    screenBackgroundColor: '#9DD5F4',
+    scrollViewBackgroundColor: '#FCF9EB',
+    tabBackgroundColor: '#FCD9E6',
     tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+    tabIconSelected: tintColorLight,
+    text: '#000',
+    tint: tintColorLight,
   },
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av'
 import * as Linking from 'expo-linking'
 import fetchAlbumCoverArt from 'coverarturl'
+
+import { Text, View } from '../components/Themed'
 
 interface PlaylistItemProps {
   album?: string
@@ -110,7 +112,6 @@ export default function ListenScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

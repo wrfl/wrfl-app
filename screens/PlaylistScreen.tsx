@@ -61,10 +61,9 @@ export default function PlaylistScreen() {
     return (
       <View>
         <Text>{moment(item.created_at).format('LL')}</Text>
-        <Text>{item.track}</Text>
-        <Text>{item.album}</Text>
-        <Text>{item.artist}</Text>
-        <Text>{item.show.name}</Text>
+        <Text>
+          {item.track} by {item.artist}
+        </Text>
       </View>
     )
   }
